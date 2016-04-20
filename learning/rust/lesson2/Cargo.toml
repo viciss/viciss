@@ -1,0 +1,7 @@
+[package]
+name = "lesson2"
+version = "0.1.0"
+authors = ["nonse"]
+
+[dependencies]
+rand="*"
