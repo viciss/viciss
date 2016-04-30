@@ -213,4 +213,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#rust in my environment
 learning/rust/embed/node_modules/
+target/
