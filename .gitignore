@@ -213,5 +213,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-learning/jackson/.idea/
-learning/jackson/target/
+
+.idea/
+
+#rust in my environment
+learning/rust/embed/node_modules/
+target/
