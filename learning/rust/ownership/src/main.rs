@@ -1,3 +1,11 @@
+struct Foo<'a> {
+	x: &'a i32
+}
+
+impl<'a> Foo<'a> {
+	fn x(&self) -> &'a i32 { self.x }
+}
+
 fn main() {
 	let a = 5;
 
@@ -17,6 +25,11 @@ fn main() {
     let (v1, v2, answer) = foo(v1, v2);
 
     let answer = foo_ref(&v1, &v2);
+
+
+    let y = &5;
+    let f = Foo {x: y};
+    println!("{}", f.x);
 }
 
 fn double(x: i32) -> i32 {
