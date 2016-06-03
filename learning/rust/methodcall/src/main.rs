@@ -61,7 +61,7 @@ fn main() {
 	.coordinate(10.0)
 	.radius(5.0)
 	.finalize();
-	
+
 	println!("{}", c.area());
 
 	let d = c.grow().area();
