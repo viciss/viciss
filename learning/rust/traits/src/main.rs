@@ -148,6 +148,31 @@ impl Drop for Firework {
 	}
 }
 
+trait FooV1 {
+	fn method(&self) -> String;
+}
+
+impl FooV1 for u8 {
+	fn method(&self) -> String {
+		format!("u8: {}", *self)
+	}
+}
+
+impl FooV1 for String {
+	fn method(&self) -> String {
+		format!("String: {}", *self)
+	}
+}
+
+fn do_something<T: FooV1>(x: T) {
+	x.method();
+}
+
+// dynamic dispatch of trait object
+fn do_somethingV1(x: &FooV1) {
+	x.method();
+}
+
 fn main() {
 	let x = HasDrop;
 	let firecracker = Firework { strength: 1};
@@ -181,4 +206,14 @@ fn main() {
 	let baz = Baz;
 	baz.foobar();
 
+	let xV0 = 5u8;
+	let yV0 = "Hello".to_string();
+
+	do_something(xV0);
+	do_something(yV0);
+
+	let xV1 = 5u8;
+	let yV1 = "Hello".to_string();
+	do_somethingV1(&xV1 as &FooV1);
+	do_somethingV1(&yV1);
 }
