@@ -173,6 +173,32 @@ fn do_somethingV1(x: &FooV1) {
 	x.method();
 }
 
+// associate type
+trait Graph {
+	type N;
+	type E;
+
+	fn has_edge(&self, &Self::N, &Self::N) ->bool;
+	fn edges(&self, &Self::N) -> Vec<Self::E>;
+}
+
+struct Node;
+struct Edge;
+struct MyGraph;
+
+impl Graph for MyGraph {
+	type N = Node;
+	type E = Edge;
+
+	fn has_edge(&self, n1: &Node, n2: &Node) -> bool {
+		true
+	}
+
+	fn edges(&self, n: &Node) -> Vec<Edge> {
+		Vec::new()
+	}
+}
+
 fn main() {
 	let x = HasDrop;
 	let firecracker = Firework { strength: 1};
@@ -216,4 +242,7 @@ fn main() {
 	let yV1 = "Hello".to_string();
 	do_somethingV1(&xV1 as &FooV1);
 	do_somethingV1(&yV1);
+
+	let graph = MyGraph;
+	let obj = Box::new(graph) as Box<Graph<N=Node, E=Edge>>;
 }
