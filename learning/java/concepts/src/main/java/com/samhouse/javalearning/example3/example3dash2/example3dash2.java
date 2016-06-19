@@ -1,4 +1,4 @@
-package com.samhouse.javalearning.example3dash2;
+package com.samhouse.javalearning.example3.example3dash2;
 
 import java.util.Scanner;
 

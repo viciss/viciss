@@ -1,4 +1,4 @@
-package com.samhouse.javalearning.example2dash1;
+package com.samhouse.javalearning.example2.example2dash1;
 
 public class App
 {

@@ -1,4 +1,4 @@
-package com.samhouse.javalearning.example2dash1;
+package example2.example2dash1;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

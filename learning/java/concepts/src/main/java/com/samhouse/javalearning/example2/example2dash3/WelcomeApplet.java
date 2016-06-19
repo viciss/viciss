@@ -1,4 +1,4 @@
-package com.samhouse.javalearning.example2dash3;
+package com.samhouse.javalearning.example2.example2dash3;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package com.samhouse.javalearning.example2dash2;
+package com.samhouse.javalearning.example2.example2dash2;
 
 import java.awt.*;
 import javax.swing.*;
