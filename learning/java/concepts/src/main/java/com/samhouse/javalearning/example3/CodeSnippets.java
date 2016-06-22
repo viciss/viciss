@@ -24,7 +24,11 @@ public class CodeSnippets
     System.out.println(Arrays.toString(anotherArray));
     System.out.println(Arrays.toString(copyArray));
 
+    // 此处的0表示数组的长度是0，所以这里int[]里的数字是数组的长度
     int[] emptyArray = new int[0];
     System.out.println(Arrays.toString(emptyArray));
+
+    // following code cannot be compiled, error: Array initializer expected
+    // int[] nullArray = new int[];
   }
 }
