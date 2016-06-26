@@ -1,9 +1,17 @@
 package com.samhouse.javalearning.example4.example4dash2;
 
+import java.util.Arrays;
+
 public class EmployeeTest
 {
   public static void main(String[] args)
   {
+    Employee[] employees = new Employee[]
+        {
+            new Employee("Carl", 30000.0, 1977, 11, 12),
+            new Employee("Harry", 40000.0, 1987, 10, 10)
+        };
+
     // fill the staff array with three Employee objects
     Employee[] staff = new Employee[3];
 
