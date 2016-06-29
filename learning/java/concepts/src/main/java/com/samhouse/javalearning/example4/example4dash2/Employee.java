@@ -17,6 +17,13 @@ public class Employee
     hireDay = calendar.getTime();
   }
 
+  public Employee(String n, double s)
+  {
+    name = n;
+    salary = s;
+    hireDay = GregorianCalendar.getInstance().getTime();
+  }
+
   public String getName()
   {
     return name;
