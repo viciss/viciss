@@ -7,8 +7,8 @@ String username = cons.readLine("User Name: ");
 char[] passwd = cons.readPassword("password: ");
 ```
 3. 移位操作符
-和C/C++中不同的是,在Java中>>运算符用符号位填充高位,>>>运算符用0填充高位
-在C/C++中无法确定>>操作执行的是算术移位还是逻辑移位?(此点有待证实)
+  和C/C++中不同的是,在Java中>>运算符用符号位填充高位,>>>运算符用0填充高位
+  在C/C++中无法确定>>操作执行的是算术移位还是逻辑移位?(此点有待证实)
 4. 数组的初始化方式
     1. 空数组的初始化方式
     ```java
@@ -44,3 +44,5 @@ for (double[] row: a)
 **这是一个by design的行为**
 13. main函数不是一定要定义在public的类中的
 14. ==比较的是是不是指向同一个对象，只有equals是比较两个对象是不是有相同内容
+15. Integer, Long, Float...等对象包装器不可变，（其实String是不是也可以认为是一种包装器呢？）  
+  `ArrayList<int>`非法而`ArrayList<Integer>`合法
