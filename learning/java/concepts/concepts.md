@@ -46,3 +46,5 @@ for (double[] row: a)
 14. ==比较的是是不是指向同一个对象，只有equals是比较两个对象是不是有相同内容
 15. Integer, Long, Float...等对象包装器不可变，（其实String是不是也可以认为是一种包装器呢？）  
   `ArrayList<int>`非法而`ArrayList<Integer>`合法
+16. `public static void main(String... args) == public static void main(String[] args)`
+17. `ArrayList<xxx> = new ArrayList<>()`是一个对象而不是一个数组
