@@ -48,3 +48,31 @@ for (double[] row: a)
   `ArrayList<int>`非法而`ArrayList<Integer>`合法
 16. `public static void main(String... args) == public static void main(String[] args)`
 17. `ArrayList<xxx> = new ArrayList<>()`是一个对象而不是一个数组
+18. 内部类可以通过隐含的指针来访问外围类对象的字段
+19. 在方法中定义的局部类不能用public或private来声明，作用域也被限定在声明这个类的块中
+```java
+public void start()
+{
+  class TimePrinter implements ActionListener
+  {
+    public void actionPerformed(ActionEvent event)
+    {
+      Date now = new Date();
+      ...
+    }
+  }
+  ActionListener listener = new TimerPrinter();
+}
+```
+20. 匿名类的一些技巧
+```java
+ArrayList<String> friends = new ArrayList<>();
+friends.add("Harry");
+friends.add("Tony");
+invite(friends);
+```
+等于`invite(new ArrayList<String>() {{ add("Harry"); add("Tony"); }})`
+
+`System.err.println("Something awful ..." + getClass());`
+中的`getClass()`可以使用如下更好的方法代替，对于静态方法也可以
+`new Object(){}.getClass().getEnclosingClass();`
