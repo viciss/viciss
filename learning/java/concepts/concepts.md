@@ -1,11 +1,11 @@
 1. StringBuilder和StringBuffer是不同的，StringBuffer可以用在多线程的环境，而StringBuilder不可以
 2. 敏感字符串信息应该存储在字符数组中，而不是String中
-```java
+ ```java
     Console cons = System.console();
     String username = cons.readLine("User Name: ");
     // passwd使用完成后应该被清零
     char[] passwd = cons.readPassword("password: ");
-```
+ ```
 3. 移位操作符
   和C/C++中不同的是,在Java中>>运算符用符号位填充高位,>>>运算符用0填充高位
   在C/C++中无法确定>>操作执行的是算术移位还是逻辑移位?(此点有待证实)
