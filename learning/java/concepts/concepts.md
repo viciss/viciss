@@ -84,3 +84,26 @@
   根据是否被static关键字修饰又分为两类：static nested classes 和 inner classes
 22. 声明在接口中的内部类自动成为static和public类
 23. 代理类？
+24. 访问resource用getResource或getResourceAsStream函数
+25. 属性映射类Properties,Preferences类使用树状结构存储键值对
+26. 可以使用以下代码来保存原始异常信息
+  ```java
+      try
+      {
+        access the database
+      }
+      catch (SQLException e)
+      {
+        Throwable se = new ServletException("database error");
+        se.initCause(e);
+        throw se;
+      }
+  ```
+27. 带资源的try语句，资源会被自动关闭，但是资源要实现AutoClosable接口
+  ```java
+      try (Scanner in = new Scanner(...), PrintWriter out = new PrintWriter())
+      {
+        while (in.hasNext())
+          out.println(in.next().toUpperCase());
+      }
+  ```
