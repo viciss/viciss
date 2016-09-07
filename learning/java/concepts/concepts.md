@@ -107,3 +107,31 @@
           out.println(in.next().toUpperCase());
       }
   ```
+28. 一些调试技巧
+    1. print
+    2. 在需要调试的类中放一个main方法，然后就可以单独调试这个类了
+    3. JUnit
+    4. 日志代理
+      ```java
+          Random generator = new
+            Random()
+            {
+              public double nextDouble()
+              {
+                double result = super.nextDouble();
+                Logger.getGlobal().info("nextDouble: " + result);
+                return result;
+              }
+            };
+      ```
+    5. 利用`Throwable`类提供的`printStackTrace`方法，或者在程序的任意位置插入`Thread.dumpStack();`
+      ```java
+          ByteArrayOutputStream out = new ByteArrayOutputStream();
+          new Throwable().printStackTrace(out);
+          String description = out.toString();
+      ```
+    6. `Thread.setDefaultUncaughtExceptionHandler`
+    7. java -verbose来观察类的加载过程
+    8. javac -Xlint:xxxx告诉编译器进行代码检查
+    9. jconsole或jmap等工具
+    10. java -X选项，比如java -Xprof
