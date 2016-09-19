@@ -135,3 +135,4 @@
     8. javac -Xlint:xxxx告诉编译器进行代码检查
     9. jconsole或jmap等工具
     10. java -X选项，比如java -Xprof
+29. Java虚拟机中泛型类型的擦除是指在虚拟机中无法区别一个`Pair`类型的对象是由`Pair<String>`构造还是由`Pair<Employee>`构造
