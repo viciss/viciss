@@ -136,3 +136,10 @@
     9. jconsole或jmap等工具
     10. java -X选项，比如java -Xprof
 29. Java虚拟机中泛型类型的擦除是指在虚拟机中无法区别一个`Pair`类型的对象是由`Pair<String>`构造还是由`Pair<Employee>`构造
+30. Java中的迭代器应该被认为是位于两个元素之间,当调用next时，迭代器就越过下一个元素，并返回刚刚越过的那个元素的引用
+  ```java
+      Iterator<String> it = c.iterator();
+      it.next(); // skip over and return the first element
+      it.remove(); // now remove the first element
+  ```
+31. Vector类是线程安全的（有同步机制），而ArrayList类是线程不安全的
