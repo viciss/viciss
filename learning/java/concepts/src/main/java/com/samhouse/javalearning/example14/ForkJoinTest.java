@@ -7,7 +7,7 @@ public class ForkJoinTest
 {
   public static void main(String[] args)
   {
-    final int SIZE = 10000000;
+    final int SIZE = 10000;
     double[] numbers = new double[SIZE];
     for (int i = 0; i < SIZE; i++)
       numbers[i] = Math.random();
@@ -63,7 +63,7 @@ class Counter extends RecursiveTask<Integer>
     }
     else
     {
-      int mid = (from - to) / 2;
+      int mid = (from + to) / 2;
       Counter first = new Counter(values, from, mid, filter);
       Counter second = new Counter(values, mid, to, filter);
       invokeAll(first, second);
