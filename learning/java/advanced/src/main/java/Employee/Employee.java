@@ -10,12 +10,19 @@ public class Employee
   private double salary;
   private Date   hireDay;
 
+  public static final int NAME_SIZE = 40;
+  public static final int RECORD_SIZE = 100;
+
   public Employee(String n, double s, int year, int month, int day)
   {
     name = n;
     salary = s;
     GregorianCalendar calendar = new GregorianCalendar(year, month - 1, day);
     hireDay = calendar.getTime();
+  }
+
+  public Employee()
+  {
   }
 
   public String getName()
