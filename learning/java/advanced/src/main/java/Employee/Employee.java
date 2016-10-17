@@ -1,10 +1,11 @@
 package Employee;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
-public class Employee
+public class Employee implements Serializable
 {
   private String name;
   private double salary;

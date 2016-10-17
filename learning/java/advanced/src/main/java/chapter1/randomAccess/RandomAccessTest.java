@@ -90,7 +90,7 @@ class DataIO
       else
         b.append(ch);
     }
-    in.skipBytes(2 * (size - 1));
+    in.skipBytes(2 * (size - i));
     return b.toString();
   }
 }
