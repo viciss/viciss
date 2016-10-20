@@ -1,11 +1,36 @@
 package Employee;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
-public class Employee implements Serializable
+class SerialCloneable implements Cloneable, Serializable
+{
+  public Object clone()
+  {
+    try
+    {
+      ByteArrayOutputStream bout = new ByteArrayOutputStream();
+      ObjectOutputStream out = new ObjectOutputStream(bout);
+      out.writeObject(this);
+      out.close();
+
+      ByteArrayInputStream bin = new ByteArrayInputStream(bout.toByteArray());
+      ObjectInputStream in = new ObjectInputStream(bin);
+      Object ret = in.readObject();
+      in.close();
+
+      return ret;
+    }
+    catch (Exception e)
+    {
+      return null;
+    }
+  }
+}
+
+public class Employee extends SerialCloneable
 {
   private String name;
   private double salary;
@@ -74,5 +99,16 @@ public class Employee implements Serializable
     return getClass().getName() + "[name=" + name + ",salary=" + salary +
         ",hireDay=" + hireDay + "]";
   }
+
+//  public Employee clone() throws CloneNotSupportedException
+//  {
+//    Employee cloned = (Employee) super.clone();
+//
+//    cloned.hireDay = (Date) hireDay.clone();
+//    cloned.name = name;
+//    cloned.salary = salary;
+//
+//    return cloned;
+//  }
 }
 
