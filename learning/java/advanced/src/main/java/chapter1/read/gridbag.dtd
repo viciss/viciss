@@ -22,6 +22,6 @@
 <!ELEMENT value (int|string|boolean|bean)>
 <!ELEMENT int (#PCDATA)>
 <!ELEMENT string (#PCDATA)>
-<!ELEMENT boolean (#PCDATA>
+<!ELEMENT boolean (#PCDATA)>
 
 
