@@ -1,5 +1,7 @@
 package printN;
 
+import timing.Timing;
+
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -7,22 +9,38 @@ public class testPrintN
 {
   public static void main(String[] args)
   {
-    final int n = 10;
+    final int n = 20;
+    Timing t = new Timing();
+    t.setUsingMili(true);
     System.out.print("For version printN:");
+    t.start();
     PrintN_for(n);
-    System.out.println();
+    t.stop();
+    System.out.println("Using " + t);
+
     System.out.print("Recursive version printN:");
+    t.start();
     PrintN_recursive(n);
-    System.out.println();
+    t.stop();
+    System.out.println("Using " + t);
+
     System.out.print("Recursive version_1 printN:");
+    t.start();
     PrintN_recursive_1(n);
-    System.out.println();
+    t.stop();
+    System.out.println("Using " + t);
+
     System.out.print("Recursive version_2 printN:");
+    t.start();
     PrintN_recursive_2(n, n);
-    System.out.println();
+    t.stop();
+    System.out.println("Using " + t);
+
     System.out.print("Lambda version printN:");
+    t.start();
     PrintN_lambda(n);
-    System.out.println();
+    t.stop();
+    System.out.println("Using " + t);
   }
 
   static void PrintN_for(int n)
