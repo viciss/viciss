@@ -26,6 +26,7 @@ BinTree Delete(BinTree BST, ElementType X);
 Position Find(BinTree BST, ElementType X);
 Position FindMin(BinTree BST);
 Position FindMax(BinTree BST);
+void FreeBinTree(BinTree * BST);
 
 int main()
 {
@@ -60,7 +61,21 @@ int main()
 	}
 	printf("Inorder:"); InorderTraversal(BST); printf("\n");
 
+    FreeBinTree(&BST);
+    printf("Inorder after Free:");
+    InorderTraversal(BST);
 	return 0;
+}
+
+void FreeBinTree(BinTree * BST)
+{
+    if (BST && *BST)
+    {
+        FreeBinTree(&((*BST)->Left));
+        FreeBinTree(&((*BST)->Right));
+        free(*BST);
+        (*BST) = NULL;
+    }
 }
 
 void PreorderTraversal(BinTree BT)
@@ -108,10 +123,12 @@ BinTree Insert(BinTree BST, ElementType X)
 	return BST;
 }
 
-BinTree DeleteWithPoint(BinTree * pBST, ElementType X)
+int DeleteWithPoint(BinTree * pBST, ElementType X)
 {
 	if (pBST == NULL || *pBST == NULL)
-		return NULL;
+    {
+		return -1;
+    }
 
 	if (X < (*pBST)->Data)
 	{
@@ -158,13 +175,17 @@ BinTree DeleteWithPoint(BinTree * pBST, ElementType X)
 				free(replaceNode);
 			}
 		}
-		return *pBST;
+		return 0;
 	}
 }
 
 BinTree Delete(BinTree BST, ElementType X)
 {
-	DeleteWithPoint(&BST, X);
+
+	if ( DeleteWithPoint(&BST, X) == -1 )
+    {
+        printf("Not Found\n");
+    }
 	return BST;
 }
 
