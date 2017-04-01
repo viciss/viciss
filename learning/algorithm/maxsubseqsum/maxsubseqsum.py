@@ -9,44 +9,40 @@ def main():
 
 	total = 0
 	maxTotal = 0
-	indexI = -1
-	lastIndexI = -1
-	indexJ = -1
+	indexI = 0
+	lastIndexI = 0
+	indexJ = 0
 	maxseq = {}
-	previousIsZero = False
-	for i in range(count):
-		if total == 0 and previousIsZero == False:
-			indexI = i
-
-		if dataList[i] == 0:
-			previousIsZero = True
-		else:
-			previousIsZero = False
-
+	for i in range(0,count):
 		total += dataList[i]
-		if total >= maxTotal:
-			maxTotal = total
-			indexJ = i
-			if dataList[i] != 0 or lastIndexI == -1:
-				lastIndexI = indexI
-			if lastIndexI != -1:
-				maxseq[lastIndexI] = indexJ
-		elif total < 0:
+		if total < 0:
 			total = 0
+			lastIndexI = i + 1
+		else:
+			if total > maxTotal:
+				maxTotal = total
+				indexI = lastIndexI
+				indexJ = i
+				maxseq[indexI] = indexJ
+			elif total == maxTotal and indexI != lastIndexI:
+				indexI = lastIndexI
+				indexJ = i
+				maxseq[indexI] = indexJ
+#		print("total={}, maxTotal={}, dataList[{}]={}, indexI={}, indexJ={}, lastIndexI={}, maxseq={}".format(total, maxTotal, i, dataList[i], indexI, indexJ, lastIndexI, maxseq))
 
 	if maxTotal == 0:
 		if len(maxseq) == 0:
-			lastIndexI = 0
+			indexI = 0
 			indexJ = len(dataList) - 1
 		else:
-			lastIndexI = min(list(maxseq.keys()))
-			indexJ = maxseq[lastIndexI]
+			indexI = min(list(maxseq.keys()))
+			indexJ = maxseq[indexI]
 	else:
-		lastIndexI = min(list(maxseq.keys()))
-		indexJ = maxseq[lastIndexI]
+		indexI = min(list(maxseq.keys()))
+		indexJ = maxseq[indexI]
 
 
-	print("{} {} {}".format(maxTotal, dataList[lastIndexI], dataList[indexJ]))
+	print("{} {} {}".format(maxTotal, dataList[indexI], dataList[indexJ]))
 
 if __name__ == '__main__':
 	main()
