@@ -1,0 +1,3 @@
+this is a test file
+a file for reading and opening
+假设文件以换行符结束
