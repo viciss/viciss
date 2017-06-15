@@ -40,6 +40,7 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.VC.db
 
 # Build results
 
@@ -150,6 +151,7 @@ ClientBin/
 *.[Pp]ublish.xml
 *.pfx
 *.publishsettings
+*.exe
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -221,3 +223,6 @@ learning/rust/embed/node_modules/
 target/
 learning/java/concepts/concepts.iml
 *.iml
+
+#sublime
+*.sublime-workspace
