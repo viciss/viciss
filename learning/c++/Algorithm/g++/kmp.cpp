@@ -45,6 +45,28 @@ class Pattern {
             return vecNext;
         };
 
+        int match( const string & str ) {
+            int nStrLength = str.length();
+            int nPatternLength = strPattern.length();
+            int i = 0;
+            int j = 0;
+
+            while ( i < nStrLength && j < nPatternLength ) {
+                if ( str[i] == strPattern[j] ) {
+                    j++;
+                }
+                else {
+                    j = vecNext[j];
+                }
+                i++;
+            }
+
+            if ( j == nPatternLength )
+                return i - j;
+
+            return -1;
+        };
+
         void printNext() {
             cout << "The next array size is: " << vecNext.size() << endl;
             for ( auto index : vecNext ) {
@@ -57,6 +79,8 @@ class Pattern {
 int main( void ) {
     Pattern p { "abcdex" };
     p.printNext();
+    int pos = p.match( "123abcdexbbbb" );
+    cout << "The start matching pos is: " << pos << endl;
 
     Pattern p1 { "abaababaef" };
     p1.printNext();
