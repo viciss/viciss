@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "vector": "cpp",
+        "initializer_list": "cpp",
+        "xmemory0": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp"
+    }
+}
