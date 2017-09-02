@@ -226,3 +226,7 @@ learning/java/concepts/concepts.iml
 
 #sublime
 *.sublime-workspace
+
+#gradle
+.gradle/
+out/
