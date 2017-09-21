@@ -1,9 +1,6 @@
 package net.samhouse;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,6 +13,18 @@ import javafx.util.Pair;
  */
 public class exercises
 {
+  private static int count = 0;
+
+  public static class handler {
+    public Stream<Integer> getSeq() {
+      List<Integer> list = new ArrayList<>(10);
+      for (int i = 0; i < 10; i++) {
+        list.add(count++);
+      }
+      return list.stream();
+    }
+  }
+
   public static void main(String[] args) {
     int total = Stream.of(1, 2, 3, 4, 5)
         .reduce(0, (acc, element) -> acc + element);
@@ -49,6 +58,8 @@ public class exercises
     System.out.println(count.get());
 
     findMostLowercase();
+
+    getHandleMap();
   }
 
   public static Optional<String> findMostLowercase() {
@@ -65,5 +76,25 @@ public class exercises
 
     System.out.println(ret.get());
     return ret;
+  }
+
+  public static void getHandleMap() {
+    List<handler> handlers = new ArrayList<>();
+    handlers.add(new handler());
+    handlers.add(new handler());
+
+//    HashMap<Integer, handler> hashMap = new HashMap<>();
+//    handlers.stream()
+//        .map(h -> {
+//
+//        })
+//        .flatMap(h -> h.getSeq())
+//        .forEach(h -> {
+//          List<Integer> list = h.getSeq();
+//          list.stream().forEach(i -> {
+//              hashMap.put(i, h);
+//          });
+//        });
+//    System.out.println(hashMap);
   }
 }

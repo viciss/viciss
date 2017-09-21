@@ -28,6 +28,12 @@ public class Artist
     this.members = null;
   }
 
+  boolean isSolo() {
+    if (members == null)
+      return true;
+    return false;
+  }
+
   public String getName() {
     return name;
   }
@@ -68,10 +74,13 @@ public class Artist
     StringBuilder sb = new StringBuilder();
     sb.append("[")
         .append(name)
-        .append("]");
+        .append("]: ");
 
-    String memberList = Stream.of(members).map(member -> "["+member.getName()+"]").reduce("", (acc, member) -> acc + member);
-    sb.append(memberList);
+    if (members != null) {
+      String memberList = Stream.of(members).map(member -> "["+member.getName()+"]").reduce("", (acc, member) -> acc + member);
+      sb.append(memberList);
+    }
+
     sb.append(origin);
 
     return sb.toString();
