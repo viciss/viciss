@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    status : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,会看到log4j2内部各种详细输出
+    monitorInterval : Log4j能够自动检测修改配置文件和重新配置本身, 设置间隔秒数。
+
+    Note: 配置文件中的值是大小写不敏感
+-->
+<Configuration status="error" monitorInterval="600">
+    <Properties>
+        <!-- configure log file position by using property-->
+        <Property name="LOG_HOME">log4j2Test/logs</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="RollingFile" filename="${LOG_HOME}/test.log" filePattern="${LOG_HOME}/test-%d{yyyy-MM-dd}-%i.log">
+            <!-- only one layout can be used under appender -->
+            <!--
+            <PatternLayout>
+                <Pattern>%d{dd/MMM/yyyy HH:mm:ss,SSS}- %c{1}: %m%n</Pattern>
+            </PatternLayout>
+            -->
+            <JsonLayout complete="true" compact="false"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1 KB" />
+            </Policies>
+        </RollingFile>
+        <!-- started from logstash 5.3, socketappender was deprecated -->
+        <!-- <Socket name="LogStash" host="10.247.102.232" protocol="TCP" reconnectDelayMillis="60000"/> -->
+        <Socket name="log4jserver" host="localhost" protocol="TCP" port="2003" reconnectDelayMillis="60000">
+            <SerializedLayout />
+            <!-- <JsonLayout complete="true" compact="false"/> -->
+        </Socket>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{ISO8601} [%X{PID}][%t(%T)] [%level] %F (line %L) %c{10}: %m%n%ex</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="debug" additivity="false">
+            <AppenderRef ref="RollingFile"/>
+            <!-- <AppenderRef ref="LogStash"/> -->
+            <AppenderRef ref="log4jserver"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

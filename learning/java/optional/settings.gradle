@@ -1,0 +1,4 @@
+rootProject.name = 'optional'
+include 'stream'
+include 'spring'
+
