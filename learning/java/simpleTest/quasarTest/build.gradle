@@ -1,0 +1,56 @@
+group 'com.samhouse'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+ext.classifier = ':jdk8'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'net.samhouse.testQuasar'
+}
+
+ext.quasarVer = '0.7.5'
+ext.junitVer = '4.12'
+
+configurations {
+    quasar
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '${junitVer}'
+    compile "co.paralleluniverse:quasar-core:${quasarVer}${classifier}"
+
+    quasar "co.paralleluniverse:quasar-core:${quasarVer}${classifier}@jar"
+}
+
+run {
+    classpath = sourceSets.main.runtimeClasspath
+    if(project.hasProperty('args')){
+        args project.args.split('\\s+')
+    }
+    if(project.hasProperty('mainClass')){
+        main = project.mainClass
+    }
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs '-server'
+    jvmArgs "-javaagent:${configurations.quasar.iterator().next()}" // =vdmc (verbose, debug, allow monitors, check class)
+    // systemProperty "co.paralleluniverse.fibers.DefaultFiberPool.parallelism", "4"
+    systemProperty "co.paralleluniverse.fibers.DefaultFiberPool.monitor", "JMX" // "METRICS" // "NONE" //
+    systemProperty "co.paralleluniverse.actors.moduleDir", "${rootProject.projectDir}/modules"
+
+    // memory
+    jvmArgs '-Xmx1024m'
+
+    // debugging
+    // jvmArgs '-ea'
+    // systemProperty 'co.paralleluniverse.fibers.verifyInstrumentation', 'true'
+}

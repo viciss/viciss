@@ -1,0 +1,5 @@
+rootProject.name = 'simpleTest'
+include 'log4j2Test'
+include 'uniqIDTest'
+include 'quasarTest'
+
