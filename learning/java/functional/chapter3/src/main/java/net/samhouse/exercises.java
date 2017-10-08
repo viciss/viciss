@@ -2,6 +2,8 @@ package net.samhouse;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,6 +18,16 @@ public class exercises
   private static int count = 0;
 
   public static class handler {
+    private int id;
+
+    public handler(int id) {
+      this.id = id;
+    }
+
+    int getId() {
+      return id;
+    }
+
     public Stream<Integer> getSeq() {
       List<Integer> list = new ArrayList<>(10);
       for (int i = 0; i < 10; i++) {
@@ -80,8 +92,21 @@ public class exercises
 
   public static void getHandleMap() {
     List<handler> handlers = new ArrayList<>();
-    handlers.add(new handler());
-    handlers.add(new handler());
+    handlers.add(new handler(0));
+    handlers.add(new handler(1));
+
+    Map<Integer, handler> handleMap = handlers.stream()
+            .collect(Collectors.toMap(h -> h.getId(), h -> h));
+
+    Manager ceo = new Manager();
+    Manager cfo = new Manager();
+    employee ee = new employee();
+    Manager coo = new Manager();
+
+    myPair<Manager> managerBuddies = new myPair<>(ceo, cfo);
+    myPair<? super Manager> wildcardBuddies = managerBuddies;
+    wildcardBuddies.setFirst(coo);
+    myPair<? extends employee> tttt = managerBuddies;
 
 //    HashMap<Integer, handler> hashMap = new HashMap<>();
 //    handlers.stream()
@@ -97,4 +122,43 @@ public class exercises
 //        });
 //    System.out.println(hashMap);
   }
+}
+
+class myPair<T> {
+  private T first;
+  private T second;
+
+  public myPair() {
+    first = null;
+    second = null;
+  }
+
+  public myPair(T first, T second) {
+    this.first = first;
+    this.second = second;
+  }
+
+  public T getFirst() {
+    return first;
+  }
+
+  public T getSecond() {
+    return second;
+  }
+
+  public void setFirst(T newValue) {
+    first = newValue;
+  }
+
+  public void setSecond(T newValue) {
+    second = newValue;
+  }
+}
+
+class employee {
+  String name;
+}
+
+class Manager extends employee {
+
 }

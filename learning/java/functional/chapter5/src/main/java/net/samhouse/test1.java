@@ -38,6 +38,36 @@ public class test1 {
 
         Map<Boolean, List<Artist>> bandSolo = bandsAndSolo(Arrays.asList(artists).stream());
         System.out.println("band And Solo= " + bandSolo);
+
+        String result =
+                Stream.of(artists).map(Artist::getName)
+                .collect(Collectors.joining(", ", "[", "]"));
+        System.out.println("result of joining= " + result);
+
+        Album[] albums = {
+                new Album("test",
+                new Track[] {new Track("Bakai", 524)},
+                new Artist[] {
+                        new Artist("The Beatles",
+                                new Artist[]
+                                        {
+                                                new Artist("John Lennon","London"),
+                                                new Artist("Paul McCartney", "London"),
+                                                new Artist("George Harrison", "London"),
+                                                new Artist("Ringo Starr", "London")
+                                        }, "London")}),
+                new Album("Aloha",
+                new Track[] {new Track("Hawaii", 540)},
+                new Artist[] {
+                        new Artist("Oche",
+                                null, "Shanghai")})
+        };
+
+        Map<Artist, Long> artistAlbums = numberOfAlbums(Stream.of(albums));
+        System.out.println("Number of artistAlbums is: " + artistAlbums);
+
+        Map<Artist, List<String>> artistAlbumName = nameOfAlbums(Stream.of(albums));
+        System.out.println("Name of artistAlbums is: " + artistAlbumName);
     }
 
     public static Optional<Artist> biggestGroup(Stream<Artist> artists) {
@@ -47,5 +77,13 @@ public class test1 {
 
     public static Map<Boolean, List<Artist>> bandsAndSolo(Stream<Artist> artists) {
         return artists.collect(Collectors.partitioningBy(Artist::isSolo));
+    }
+
+    public static Map<Artist, Long> numberOfAlbums(Stream<Album> albums) {
+        return albums.collect(Collectors.groupingBy(album -> album.getMainMusician(), Collectors.counting()));
+    }
+
+    public static Map<Artist, List<String>> nameOfAlbums(Stream<Album> albums) {
+        return albums.collect(Collectors.groupingBy(Album::getMainMusician, Collectors.mapping(Album::getName, Collectors.toList())));
     }
 }

@@ -27,7 +27,15 @@ public class Album
     return Arrays.asList(musicians).stream();
   }
 
+  public Artist getMainMusician() {
+    return musicians[0];
+  }
+
   public Stream<Track> getTracks() {
     return Arrays.asList(tracks).stream();
+  }
+
+  public String getName() {
+    return name;
   }
 }
