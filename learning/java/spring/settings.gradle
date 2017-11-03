@@ -1,0 +1,10 @@
+rootProject.name = 'spring'
+rootProject.name = 'spring'
+rootProject.name = 'spring'
+include 'chapter1'
+include 'chapter2'
+include 'test'
+include 'chapter3'
+include 'chapter4'
+include 'chapter5'
+
