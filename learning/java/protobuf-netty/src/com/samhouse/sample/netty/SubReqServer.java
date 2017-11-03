@@ -15,6 +15,9 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by huangs22 on 2017/8/4.
@@ -41,6 +44,8 @@ public class SubReqServer {
                                     new ProtobufVarint32LengthFieldPrepender());
                             ch.pipeline().addLast(
                                     new ProtobufEncoder());
+                            ch.pipeline().addLast(
+                                    new IdleStateHandler(5, 7, 3, TimeUnit.SECONDS));
                             ch.pipeline().addLast(
                                     new SubReqServerHandle());
                         }

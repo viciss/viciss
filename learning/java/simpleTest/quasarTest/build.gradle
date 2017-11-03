@@ -12,6 +12,8 @@ if (!hasProperty('mainClass')) {
     ext.mainClass = 'net.samhouse.testQuasar'
 }
 
+mainClassName = 'net.samhouse.testQuasar'
+
 ext.quasarVer = '0.7.5'
 ext.junitVer = '4.12'
 

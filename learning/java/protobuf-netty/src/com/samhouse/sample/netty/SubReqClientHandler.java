@@ -19,6 +19,13 @@ public class SubReqClientHandler extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) {
         for (int i = 0; i < 10; i++) {
             ctx.write(subReq(i));
+//            try {
+//                Thread.sleep(10 * 1000);
+//            }
+//            catch (InterruptedException e)
+//            {
+//                System.out.println("sleep is interrupted: " + e);
+//            }
         }
         ctx.flush();
     }

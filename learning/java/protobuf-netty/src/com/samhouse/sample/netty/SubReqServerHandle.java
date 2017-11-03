@@ -5,6 +5,7 @@ import com.samhouse.sample.netty.codec.protobuf.SubscribeRespProto;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.ReferenceCountUtil;
 
 /**
@@ -37,5 +38,28 @@ public class SubReqServerHandle extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
+    }
+
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent) {
+            IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
+            String eventType = null;
+
+            switch (idleStateEvent.state()) {
+                case READER_IDLE:
+                    eventType = "read idle";
+                    break;
+                case WRITER_IDLE:
+                    eventType = "write idle";
+                    break;
+                case ALL_IDLE:
+                    eventType = "both read and write idle";
+                    break;
+            }
+
+            System.out.println(ctx.channel().remoteAddress() + "idle event: " + eventType);
+            ctx.channel().close();
+        }
     }
 }

@@ -1,3 +1,5 @@
+package net.samhouse;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.Inet4Address;

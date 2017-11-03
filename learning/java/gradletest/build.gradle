@@ -21,3 +21,44 @@ jar {
     version = '0.1.0'
 }
 
+task helloWorld << {
+   println "Hello World!"
+}
+
+task hello3 {
+	doFirst {
+		println 'hello3'
+	}
+}
+
+task hello2 {
+	doLast {
+		println 'hello2'
+	}
+}
+
+task showTasks << {
+	println tasks.class
+	println tasks.size()
+}
+
+tasks.create(name: 'hello4') << {
+	println 'hello4'
+}
+
+task hello5(dependsOn:hello4) << {
+	println 'hello5'
+}
+
+task hello6 << {
+	println 'hello6'
+}
+hello6.dependsOn hello5
+
+task hello7 << {
+	println description
+}
+
+hello7 {
+	description = "this is new from hello7"
+}
